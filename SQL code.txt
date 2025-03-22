@@ -1,0 +1,86 @@
+-- where statement
+SELECT first_name,last_name,gender 
+FROM patients
+where gender = 'M';
+
+--using null 
+
+select first_name,last_name 
+from patients 
+where allergies is NULL;
+
+-- Like function
+
+Select first_name 
+from patients 
+where first_name like 'C%';
+
+--Between and function
+
+select first_name,last_name 
+from patients 
+where weight between 100 and 120;
+
+-- Update statement
+
+Update patients 
+set allergies = 'NKA'
+where allergies is NULL;
+
+-- Concat function
+
+Select concat(first_name,' ',last_name) as full_name 
+from patients;
+
+--join statement
+--by default inner join
+
+Select p.first_name,p.last_name,pr.province_name
+from patients p join province_names pr 
+where p.province_id = pr.province_id;
+
+--Count function and Year function
+
+select count(*) 
+from patients
+where year(birth_date) = 2010;
+
+--Order by statement
+
+select first_name,last_name,height
+from patients 
+order by height desc limit 1;
+
+--IN function
+
+select * from patients 
+where patient_id in (1,45,534,879,1000);
+
+-- alias function 'AS'
+
+select patient_id, count(*) as total_admissions
+from admissions
+where patient_id = 579
+;
+
+--Distinct function
+
+select distinct city 
+from patients 
+where province_id = 'NS';
+
+--greater than and less than
+--AND operator
+
+
+select first_name,last_name,birth_date
+from patients
+where height > 160 and weight > 70;
+
+-- NOT NULL function 
+
+select first_name,last_name,allergies
+from patients 
+where allergies is NOT NULL 
+and city = 'Hamilton';
+
